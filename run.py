@@ -14,5 +14,5 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("pp3-clocking-machine")
 
-test = SHEET.worksheet("BadgeNumbers").row_values(1)
-print(test)
+print("Please enter your clocking number or enter 9999 to register as a new user")
+
