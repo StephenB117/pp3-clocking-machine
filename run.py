@@ -8,8 +8,6 @@ SCOPE = [
 ]
 
 CREDS = Credentials.from_service_account_file("creds.json")
-
-CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("pp3-clocking-machine")
@@ -46,7 +44,7 @@ def validate_user_input(data):
 def new_or_current_user(data):
     """
     Checks if the user has entered 9999 to register as a new user. Or if they are a current user.
-    If they are a new user they are asked to enter their desired badge number. 
+    If they are a new user they are asked to enter their desired badge number. This is then added to the sheet
     If they are a returning user they are checked against the google sheet. 
     """
     current_badges = SHEET.worksheet("badge_numbers").col_values(1)
@@ -72,9 +70,17 @@ def new_or_current_user(data):
                 print("Badge number does not exist\n")
                 data = input("Please enter your badge number again\n")
 
+def record_clocking():
+    clockings = SHEET.worksheet("clockings")
 
 
 
 
 test = get_badge_number()
 new_or_current_user(test)
+
+# create two functions in new or current user to handle each situation and run them in a while loop 
+# so main function then while create new user//check is user exists break 
+#add each new clocking to its own row with badge number in cell 1 in time in cell 2 
+#figure out how to add a clock out time to the third cell 
+#
