@@ -19,9 +19,12 @@ def get_badge_number():
     Gets the users badge number from the user via the terminal.
     Badge number must only contain numbers in the range of 0001 to 9998.  
     """
-    badge = input("Please enter your clocking number or enter 9999 to register as a new user\n")
-
-    validate_user_input(badge)
+    while True:
+        badge = input("Please enter your clocking number or enter 9999 to register as a new user\n")
+        if validate_user_input(badge):
+            print("Badge valid")
+            break
+    return badge
 
 def validate_user_input(data):
     """
@@ -36,7 +39,12 @@ def validate_user_input(data):
 
     except ValueError as e:
         print(f"invalid data: {e} please enter a number\n")
+        return False
 
-    return data 
-   
-get_badge_number()
+    return True 
+
+
+
+
+
+test = get_badge_number()
